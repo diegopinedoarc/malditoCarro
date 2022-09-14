@@ -44,6 +44,49 @@ const addToCart = (e) => {
     }
   });
 };
+const handleQuantity = (e) => {
+  if (e.target.classList.contains("less")) {
+    const existingCartItem = cart.find(
+      (item) => item.id === e.target.dataset.id
+    );
+    if (existingCartItem.cant === 1) {
+      if (window.confirm("¿Desea Eliminar el producto del carrito?")) {
+        cart = cart.filter((prod) => prod.id !== existingCartItem.id);
+        saveLocalStorage(cart);
+        renderCart(cart);
+        showTotal(cart);
+        disableBuyBtn();
+        return;
+      }
+    }
+    cart = cart.map((item) => {
+      return item.id === existingCartItem.id
+        ? { ...item, cant: Number(item.cant) - 1 }
+        : item;
+    });
+  } else if (e.target.classList.contains("more")) {
+    const existingCartItem = cart.find(
+      (item) => item.id === e.target.dataset.id
+    );
+    cart = cart.map((item) => {
+      return item.id === existingCartItem.id
+        ? { ...item, cant: Number(item.cant) + 1 }
+        : item;
+    });
+  }
+  saveLocalStorage(cart);
+  renderCart(cart);
+  showTotal(cart);
+  disableBuyBtn();
+};
+
+const completeBuy = () => {
+  if (!cart.length) return;
+  if (window.confirm("¿Desea finalizar su compra?")) {
+    localStorage.removeItem("cart");
+    window.location.reload();
+  }
+};
 
 const filterCategory = (e) => {
   const selectedCategory = e.target.dataset.category;

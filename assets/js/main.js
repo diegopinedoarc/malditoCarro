@@ -9,6 +9,8 @@ const categories = document.querySelector(".categories");
 const categoriesList = document.querySelectorAll(".categories__caja");
 const titleCategory = document.querySelector(".titleCategory");
 const recommendContainer = document.querySelector("#containerRecommend");
+const total = document.querySelector(".total");
+const buyBTN = document.querySelector(".buy-btn");
 
 //Seteo cart en localStorage
 // let cart = json.parse(localStorage.getItem("cart")) || [];
@@ -30,11 +32,16 @@ closeCart.addEventListener("click", (e) => {
   cartSection.classList.toggle("display");
 });
 
-document.addEventListener("DOMContentLoaded", popularProducts(stockProducts));
-recommendContainer.addEventListener("DOMContentLoaded", recommendRandom());
-categoriesList.forEach((btn) => {
-  btn.addEventListener("click", filterProducts);
-});
-document.addEventListener("DOMContentLoaded", renderCart(cart));
-recommendContainer.addEventListener("click", addToCart);
-productsContainer.addEventListener("click", addToCart);
+const init = () => {
+  document.addEventListener("DOMContentLoaded", popularProducts(stockProducts));
+  recommendContainer.addEventListener("DOMContentLoaded", recommendRandom());
+  categoriesList.forEach((btn) => {
+    btn.addEventListener("click", filterProducts);
+  });
+  document.addEventListener("DOMContentLoaded", renderCart(cart));
+  recommendContainer.addEventListener("click", addToCart);
+  productsContainer.addEventListener("click", addToCart);
+  buyBTN.addEventListener("click", completeBuy);
+};
+
+init();

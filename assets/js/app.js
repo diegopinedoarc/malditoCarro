@@ -14,6 +14,7 @@ const popularProducts = (stockProducts) => {
 // const addProduct = ({ target }) => {
 //   if (!target.classList.contains("product")) return;
 // };
+
 const addToCart = (e) => {
   if (!e.target.classList.contains("product")) return;
   const products = [...stockProducts];
@@ -24,13 +25,12 @@ const addToCart = (e) => {
         name: e.target.dataset.name,
         descrip: e.target.dataset.bid,
         img: e.target.dataset.img,
-        cant: e.target.dataset.cant,
         price: e.target.dataset.price,
       };
-      const existingCartItem = cart.find((item) => item.id === product.id);
+      const existingCartItem = cart.find((item) => item.id === AddedProduct.id);
       if (existingCartItem) {
         cart = cart.map((item) => {
-          return item.id === product.id
+          return item.id === AddedProduct.id
             ? { ...item, cant: Number(item.cant) + 1 }
             : item;
         });
@@ -45,13 +45,6 @@ const addToCart = (e) => {
   });
 };
 
-const renderCart = (cartList) => {
-  if (!cartList.length) {
-    cartContainer.innerHTML = `<p class="empty-msg">No hay productos en el carrito</p>`;
-    return;
-  }
-  cartContainer.innerHTML = cartList.map(renderCardCart).join("");
-};
 const filterCategory = (e) => {
   const selectedCategory = e.target.dataset.category;
   const categories = [...categoriesList];

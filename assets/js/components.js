@@ -37,7 +37,6 @@ const productCard = (product) => {
         data-name='${name}'
         data-text='${text}'
         data-price='${price}'
-        data-cant='${1}'
         >Agregar</button>   
          </div>
     </div>
@@ -58,4 +57,11 @@ const renderCardCart = (product) => {
   <span class="more" data-id=${id}>+</span>
 </div>
 </div>`;
+};
+const renderCart = (cartList) => {
+  if (!cartList.length) {
+    cartContainer.innerHTML = `<p class="empty-msg">No hay productos en el carrito</p>`;
+    return;
+  }
+  cartContainer.innerHTML = cart.map(renderCardCart).join("");
 };

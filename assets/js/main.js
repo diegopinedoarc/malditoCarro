@@ -35,6 +35,6 @@ recommendContainer.addEventListener("DOMContentLoaded", recommendRandom());
 categoriesList.forEach((btn) => {
   btn.addEventListener("click", filterProducts);
 });
-document.addEventListener("DOMContentLoaded", renderCart);
+document.addEventListener("DOMContentLoaded", renderCart(cart));
 recommendContainer.addEventListener("click", addToCart);
 productsContainer.addEventListener("click", addToCart);

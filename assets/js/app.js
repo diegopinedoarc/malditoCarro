@@ -14,6 +14,11 @@ const popularProducts = (stockProducts) => {
 // const addProduct = ({ target }) => {
 //   if (!target.classList.contains("product")) return;
 // };
+const showTotal = (cartList) => {
+  total.innerHTML = `${cartList
+    .reduce((acc, cur) => acc + Number(cur.price) * cur.quantity, 0)
+    .toFixed(2)}`;
+};
 
 const addToCart = (e) => {
   if (!e.target.classList.contains("product")) return;

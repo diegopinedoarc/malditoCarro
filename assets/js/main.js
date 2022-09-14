@@ -42,6 +42,7 @@ const init = () => {
   recommendContainer.addEventListener("click", addToCart);
   productsContainer.addEventListener("click", addToCart);
   buyBTN.addEventListener("click", completeBuy);
+  productsContainer.addEventListener("click", handleQuantity);
 };
 
 init();

@@ -45,7 +45,6 @@ const addToCart = (e) => {
       saveLocalStorage(cart);
       renderCart(cart);
       showTotal(cart);
-      // cartContainer.innerHTML += renderCardCart(AddedProduct);
     }
   });
 };
@@ -83,6 +82,13 @@ const handleQuantity = (e) => {
   renderCart(cart);
   showTotal(cart);
   disableBuyBtn();
+};
+const disableBuyBtn = () => {
+  if (!cart.length) {
+    buyBTN.classList.add("disabled");
+  } else {
+    buyBTN.classList.remove("disabled");
+  }
 };
 
 const completeBuy = () => {
